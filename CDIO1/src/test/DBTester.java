@@ -2,6 +2,7 @@ package test;
 
 
 import java.util.List;
+import java.util.Scanner;
 
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
@@ -11,6 +12,8 @@ import dto.UserDTO;
 public class DBTester {
 	//TODO refactor as JUnit test???
 	public static void main(String[] args) {
+		Scanner scan = new Scanner (System.in);
+		
 		IUserDAO iDAO = new UserDAODiscImpl();
 		UserDTO newUser = new UserDTO();
 		printUsers(iDAO);
