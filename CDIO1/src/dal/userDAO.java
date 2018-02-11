@@ -34,7 +34,15 @@ public class userDAO implements IUserDAO{
 
 	@Override
 	public void deleteUser(int userId) throws DALException {
-		// TODO Auto-generated method stub
+		if(LISTnavn.contains(getUser(userId))) {			//Bør man også tjekke brugerens 'role'?
+			LISTnavn.remove(getUser(userId));
+			System.out.println("Brugeren er blevet fjernet.");
+		}
+		
+		else {
+			System.out.println("Der findes ingen bruger med dette ID.");
+		}
+		
 		
 	}
 
