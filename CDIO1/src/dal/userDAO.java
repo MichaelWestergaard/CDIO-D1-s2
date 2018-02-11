@@ -30,7 +30,7 @@ public class userDAO implements IUserDAO{
 	public void updateUser(UserDTO user) throws DALException {
 		// TODO Auto-generated method stub
 		
-	}
+	} 
 
 	@Override
 	public void deleteUser(int userId) throws DALException {
