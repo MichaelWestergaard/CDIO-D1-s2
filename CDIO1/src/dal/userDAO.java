@@ -2,6 +2,7 @@ package dal;
 
 import java.util.List;
 
+import Simpel2lagsModel.DemoData.Ingredient;
 import dto.UserDTO;
 
 public class userDAO implements IUserDAO{
@@ -19,9 +20,10 @@ public class userDAO implements IUserDAO{
 	}
 
 	@Override
-	public void createUser(UserDTO user) throws DALException {
-		// TODO Auto-generated method stub
-		
+	public void createUser(UserDTO user) throws DALException {//har skrevet "LISTnavn" da vi ikke har oprettet vores brugereliste - Mussab
+		if(getUser(userId) == null) {
+			LISTnavn.add(new User(userId, userName, ini, roles));
+		}
 	}
 
 	@Override
