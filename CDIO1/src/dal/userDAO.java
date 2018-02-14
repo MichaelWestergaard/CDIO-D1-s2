@@ -1,11 +1,11 @@
 package dal;
 
 import java.util.List;
-
-import Simpel2lagsModel.DemoData.Ingredient;
+import java.util.Scanner;
 import dto.UserDTO;
 
 public class userDAO implements IUserDAO{
+	Scanner scanner = new Scanner(System.in);
 
 	@Override
 	public UserDTO getUser(int userId) throws DALException {
@@ -28,7 +28,36 @@ public class userDAO implements IUserDAO{
 
 	@Override
 	public void updateUser(UserDTO user) throws DALException {
-		// TODO Auto-generated method stub
+		System.out.println("Indtast bruger id: ");
+		int id = scanner.nextInt();
+		
+		System.out.println("Hvad vil du redigere?\n[1] Navn\n[2] Ini\n[3] Rolle ");
+		int action = scanner.nextInt();
+		switch (action) {
+			case 1:
+				System.out.println("Skriv et nyt brugernavn: ");
+				String newName = scanner.next();
+				UserDTO.setUserName(newName);
+				break;
+			case 2:
+				System.out.println("Skriv det nye Ini: ");
+				String newIni = scanner.next();
+				UserDTO.setIni(newIni);
+				break;
+			case 3:
+				System.out.println("Vælg den nye rolle: ");
+				String newIni = scanner.next();
+				UserDTO.setIni(newIni);
+				break;
+				
+				
+				
+				
+			default:
+				System.out.println("Ugyldig indtastning");
+				showMenu();
+		}
+	}
 		
 	} 
 
