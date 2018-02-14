@@ -7,6 +7,37 @@ import dto.UserDTO;
 public class userDAO implements IUserDAO{
 	Scanner scanner = new Scanner(System.in);
 
+	public void showMenu() {
+		System.out.println(" --- [MENU] --- ");
+		System.out.println("[1] Find en bruger\n[2] Få bruger liste\n[3] Lav en ny bruger\n[4] Opdater oplysninger for en bruger\n[5] Slet en bruger");
+		int action = scanner.nextInt();
+		switch (action) {
+			case 1:
+				getUser();
+				break;
+			case 2:
+				getUserList();
+				break;
+			case 3:
+				createUser();
+				break;
+			case 4:
+				updateUser();
+				break;
+			case 5:
+				deleteUser();
+	
+			default:
+				showMenu();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public UserDTO getUser(int userId) throws DALException {
 		// TODO Auto-generated method stub
@@ -49,10 +80,6 @@ public class userDAO implements IUserDAO{
 				String newIni = scanner.next();
 				UserDTO.setIni(newIni);
 				break;
-				
-				
-				
-				
 			default:
 				System.out.println("Ugyldig indtastning");
 				showMenu();
