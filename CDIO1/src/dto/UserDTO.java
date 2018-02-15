@@ -11,6 +11,8 @@ public class UserDTO implements Serializable{
 	private String userName;                
 	private String ini;                 
 	private List<String> roles;
+	private int cpr; //mussab
+	private String password; //Mussab
 	
 	public UserDTO(int userId, String userName, String ini, List<String> roles) {
         this.userId = userId;

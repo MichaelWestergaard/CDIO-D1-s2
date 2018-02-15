@@ -26,7 +26,22 @@ public class userDAO implements IUserDAO{
 		}
 	}
 
-	@Override
+	public void updateUserName(String newName) throws DALException {
+		UserDTO.setUserName(newName);
+	}
+	
+	public void updateUserID(int newUserId) throws DALException {
+		UserDTO.setUserId(newUserId);
+	}
+	
+	public void updateRole() throws DALException {
+
+	}
+	
+	
+	
+	
+/*	@Override
 	public void updateUser(UserDTO user) throws DALException {
 		System.out.println("Indtast bruger id: ");
 		int id = scanner.nextInt();
@@ -54,8 +69,10 @@ public class userDAO implements IUserDAO{
 				showMenu();
 		}
 	}
-		
+		//Update username, updateID et som metode
 	} 
+
+*/
 
 	@Override
 	public void deleteUser(int userId) throws DALException {
