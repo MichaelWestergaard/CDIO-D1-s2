@@ -4,8 +4,34 @@ import java.util.List;
 
 import Simpel2lagsModel.DemoData.Ingredient;
 import dto.UserDTO;
+import opgave1_uge2_3.IngredientNotFoundException;
 
 public class userDAO implements IUserDAO{
+	
+	 /*public void showIngredients() {
+	        System.out.println("Liste af ingredienser:");
+	        for (String s : data.getAllIngredients()) {
+	            System.out.println(s);
+	        }
+	    }
+
+	    @Override
+	    public void showIngredient() {
+	        System.out.print("Indtast id: ");
+	        String input = scanner.next();
+	        int id = Integer.parseInt(input);
+	        String ingredient;
+			try {
+				ingredient = data.getIngredientName(id) + " (" + data.getIngredientAmount(id) + " gram)";
+				System.out.println(ingredient);
+			} catch (IngredientNotFoundException e) {
+				System.out.println("Denne ingrediens er ikke fundet");
+				e.printStackTrace();
+			}
+	       
+	        
+	    }
+	*/
 
 	@Override
 	public UserDTO getUser(int userId) throws DALException {
