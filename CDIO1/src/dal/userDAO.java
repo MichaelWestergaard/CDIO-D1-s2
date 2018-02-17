@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import dto.UserDTO;
 
-public class userDAO implements IUserDAO{
+public class userDAO implements IUserDAO {
 	Scanner scanner = new Scanner(System.in);
 
 
