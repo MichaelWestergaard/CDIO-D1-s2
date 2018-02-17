@@ -10,8 +10,8 @@ public interface IUserDAO {
 	void createUser(UserDTO user) throws DALException;
 	void updateUser(UserDTO user) throws DALException;
 	void deleteUser(int userId) throws DALException;
-	void showUsers() throws DALException; //skal der skrives noget inde i metoden?
-	void showUser() throws DALException; // skal der skrives noget inde i metoden?
+	void showUsers() throws DALException;
+	void showUser(int id) throws DALException;
 	
 	public class DALException extends Exception {
 
