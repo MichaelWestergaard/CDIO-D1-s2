@@ -1,9 +1,11 @@
+import dal.IUserDAO;
+import dal.userDAO;
 
 public class main {
 
 	public static void main(String[] args) {
-//		IData data = new DemoData();
-//		IUI ui = new TUI(data);
+		IUserDAO data = new userDAO();
+		IUI ui = new TUI(data);
 		while (true){
 		   ui.showMenu();
 		}
