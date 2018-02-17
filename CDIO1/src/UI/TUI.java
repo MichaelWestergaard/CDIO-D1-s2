@@ -1,8 +1,8 @@
 package UI;
 
-import java.util.List;
 import java.util.Scanner;
 
+import dal.IUserDAO;
 import dal.IUserDAO.DALException;
 import dal.userDAO;
 
@@ -10,8 +10,8 @@ public class TUI implements IUI {
 	Scanner scan = new Scanner(System.in);
 	userDAO userdata;
 	
-	public TUI(userDAO userdata) {
-		this.userdata = userdata;
+	public TUI(IUserDAO data) {
+		this.userdata = (userDAO) data;
 	}
 	
 	@Override
