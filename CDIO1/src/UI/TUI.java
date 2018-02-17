@@ -1,7 +1,9 @@
 package UI;
 
+import java.util.List;
 import java.util.Scanner;
 import dal.userDAO;
+import dto.UserDTO;
 
 public class TUI implements IUI {
 	Scanner scan = new Scanner(System.in);
@@ -38,7 +40,7 @@ public class TUI implements IUI {
 	}
 	
 	public void createUser() {
-		
+		UserDTO user = new UserDTO(0, "Username", "ini", "Admin", "000000-0000", "Password");
 	}
 	
 	public void listUsers() {
