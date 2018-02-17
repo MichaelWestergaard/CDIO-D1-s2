@@ -10,7 +10,7 @@ public class userDAO implements IUserDAO{
 
 	@Override
 	public UserDTO getUser(int userId) throws DALException {	
-		// TODO Auto-generated method stub bru for loop til at kører llisten igennem, og tjekker om ideeren er den samme. return userDTO
+		//brug for loop til at kører llisten igennem, og tjekker om ideeren er den samme. return userDTO
 		return null;
 	}
 
@@ -68,28 +68,28 @@ public class userDAO implements IUserDAO{
 
 	}
 
-	@Override
-	public void showUsers() throws DALException {
-		System.out.println("Liste af brugerne:");
-		for (String s : data.getAllUsers()) {
-			System.out.println(s);
-		}
-	}
-
-	@Override
-	public void showUser(int id) throws DALException {
-		System.out.print("Indtast id: ");
-		String input = scanner.next();
-		int id = Integer.parseInt(input);
-		String user;
-		try {
-			user = data.getUserName(id) + data.getUserAmount(id); 
-			//i vores tilfælde hvad er data, fra tui klassen i sidste uges opgave?
-			System.out.println(user);
-		} catch (UserNotFoundException e) {
-			System.out.println("Denne bruger er ikke fundet");
-			e.printStackTrace();
-		}
-	}
+//	@Override
+//	public void showUsers() throws DALException {
+//		System.out.println("Liste af brugerne:");
+//		for (String s : data.getAllUsers()) {
+//			System.out.println(s);
+//		}
+//	}
+//
+//	@Override
+//	public void showUser(int id) throws DALException {
+//		System.out.print("Indtast id: ");
+//		String input = scanner.next();
+//		int id = Integer.parseInt(input);
+//		String user;
+//		try {
+//			user = data.getUserName(id) + data.getUserAmount(id); 
+//			//i vores tilfælde hvad er data, fra tui klassen i sidste uges opgave?
+//			System.out.println(user);
+//		} catch (UserNotFoundException e) {
+//			System.out.println("Denne bruger er ikke fundet");
+//			e.printStackTrace();
+//		}
+//	}
 
 }
