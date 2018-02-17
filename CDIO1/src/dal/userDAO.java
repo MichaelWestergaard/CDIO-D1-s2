@@ -7,6 +7,39 @@ import java.util.Scanner;
 import Simpel2lagsModel.DemoData.Ingredient;
 import dto.UserDTO;
 
+<<<<<<< HEAD
+
+
+public class userDAO implements IUserDAO{
+	
+	 public void showUsers() {
+	        System.out.println("Liste af brugerne:");
+	        for (String s : data.getAllUsers()) {
+	            System.out.println(s);
+	        }
+	    }
+
+	    @Override
+	    public void showUser() {
+	        System.out.print("Indtast id: ");
+	        String input = scanner.next();
+	        int id = Integer.parseInt(input);
+	        String user;
+			try {
+				user = data.getUserName(id) + data.getUserAmount(id); 
+				//i vores tilfælde hvad er data, fra tui klassen i sidste uges opgave?
+				System.out.println(user);
+			} catch (UserNotFoundException e) {
+				System.out.println("Denne bruger er ikke fundet");
+				e.printStackTrace();
+			}
+	       
+	        
+	    }
+
+
+=======
+>>>>>>> branch 'master' of https://github.com/MichaelWestergaard/CDIO-D1-s2.git
 public class userDAO implements IUserDAO{
 	Scanner scanner = new Scanner(System.in);
 
