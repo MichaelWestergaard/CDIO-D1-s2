@@ -11,7 +11,7 @@ public class userDAO implements IUserDAO{
 	
 	 public void showUsers() {
 	        System.out.println("Liste af brugerne:");
-	        for (String s : .getAllIngredients()) {
+	        for (String s : data.getAllUsers()) {
 	            System.out.println(s);
 	        }
 	    }
@@ -33,9 +33,7 @@ public class userDAO implements IUserDAO{
 	       
 	        
 	    }
-	
 
->>>>>>> branch 'master' of https://github.com/MichaelWestergaard/CDIO-D1-s2.git
 
 public class userDAO implements IUserDAO{
 	Scanner scanner = new Scanner(System.in);
