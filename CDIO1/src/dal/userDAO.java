@@ -57,15 +57,12 @@ public class userDAO implements IUserDAO{
 		}
 	}
 
-	public void updateUserName(String newName) throws DALException { //Disse burde tag en int Id parameter? idk bg
-		UserDTO.setUserName(newName);
+	public void updateUserName(int userId, String userName) throws DALException { //Disse burde tag en int Id parameter? idk bg
+		UserDTO.setUserName(userName);
 	}
 	
-	public void updateUserID(int newUserId) throws DALException { //skal man kunne opdatere sit bruger id?
-		UserDTO.setUserId(newUserId);
-	}
 	
-	public void updateIni() throws DALException {
+	public void updateIni(int userId, int ini) throws DALException {
 
 	}
 	
@@ -73,8 +70,8 @@ public class userDAO implements IUserDAO{
 
 	}
 	
-	public void updateCpr() throws DALException {
-
+	public void updateCpr(int userId, String cpr ) throws DALException {
+		
 	}
 
 	public void updatePassword() throws DALException {
