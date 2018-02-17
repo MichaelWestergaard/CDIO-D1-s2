@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import Simpel2lagsModel.DemoData.Ingredient;
+
 public class UserDTO implements Serializable{
 
 	private static final long serialVersionUID = 4545864587995944260L;
@@ -11,7 +13,7 @@ public class UserDTO implements Serializable{
 	private String userName;  // min 2 - max 20 tegn              
 	private String ini;         //initialer 2 til 4        
 	private List<String> roles; //Gyldige roller: Admin, Pharmacist, Foreman, Operator
-	private String cpr; //mussab  Cpr nummner int eller string
+	private String cpr; //mussab  Cpr nummner int eller string / det skal være en String - Mussab
 	private String password; //Mussab  Din nye adgangskode skal opfylde følgende regler:
    /* Adgangskoden skal indeholde mindst 6 tegn af mindst tre af de følgende fire kategorier: små bogstaver (’a’ til ’z’), store bogstaver (’A’ til ’Z’), cifre (’0’ til ’9’) og specialtegn (som defineret herunder).
     Undgå at bruge dit fornavn, efternavn eller bruger-ID som en del af din adgangskode, da dette vil medføre problemer med at logge ind på nogle systemer og tjenester på DTU, især Windows-tjenester.
@@ -66,6 +68,13 @@ public class UserDTO implements Serializable{
 	
 	public void addRole(String role){
 		this.roles.add(role);
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	/**
 	 * 
