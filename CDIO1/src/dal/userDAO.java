@@ -2,7 +2,9 @@ package dal;
 
 import java.util.List;
 import java.util.Scanner;
+
 import dto.UserDTO;
+
 
 public class userDAO implements IUserDAO{
 	Scanner scanner = new Scanner(System.in);
@@ -26,20 +28,29 @@ public class userDAO implements IUserDAO{
 		}
 	}
 
-	public void updateUserName(String newName) throws DALException {
+	public void updateUserName(String newName) throws DALException { //Disse burde tag en int Id parameter? idk bg
 		UserDTO.setUserName(newName);
 	}
 	
-	public void updateUserID(int newUserId) throws DALException {
+	public void updateUserID(int newUserId) throws DALException { //skal man kunne opdatere sit bruger id?
 		UserDTO.setUserId(newUserId);
+	}
+	
+	public void updateIni() throws DALException {
+
 	}
 	
 	public void updateRole() throws DALException {
 
 	}
 	
-	
-	
+	public void updateCpr() throws DALException {
+
+	}
+
+	public void updatePassword() throws DALException {
+
+	}
 	
 /*	@Override
 	public void updateUser(UserDTO user) throws DALException {
@@ -85,6 +96,12 @@ public class userDAO implements IUserDAO{
 			System.out.println("Der findes ingen bruger med dette ID.");
 		}
 		
+		
+	}
+
+	@Override
+	public void updateUser(UserDTO user) throws DALException {
+		// TODO Auto-generated method stub
 		
 	}
 

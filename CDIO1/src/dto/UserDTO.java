@@ -7,18 +7,25 @@ import java.util.List;
 public class UserDTO implements Serializable{
 
 	private static final long serialVersionUID = 4545864587995944260L;
-	private int	userId;                     
-	private String userName;                
-	private String ini;                 
-	private List<String> roles;
-	private int cpr; //mussab
-	private String password; //Mussab
+	private int	userId;  //Interval 11-99, Benyttes når der skal foretages en afvejning til at identificere operatøren over for vægten.                   
+	private String userName;  // min 2 - max 20 tegn              
+	private String ini;         //initialer 2 til 4        
+	private List<String> roles; //Gyldige roller: Admin, Pharmacist, Foreman, Operator
+	private int cpr; //mussab  Cpr nummner int eller string
+	private String password; //Mussab  Din nye adgangskode skal opfylde følgende regler:
+   /* Adgangskoden skal indeholde mindst 6 tegn af mindst tre af de følgende fire kategorier: små bogstaver (’a’ til ’z’), store bogstaver (’A’ til ’Z’), cifre (’0’ til ’9’) og specialtegn (som defineret herunder).
+    Undgå at bruge dit fornavn, efternavn eller bruger-ID som en del af din adgangskode, da dette vil medføre problemer med at logge ind på nogle systemer og tjenester på DTU, især Windows-tjenester.
+    Anvend blot følgende special-tegn: {'.', '-', '_', '+', '!', '?', '='} */
+
+
 	
-	public UserDTO(int userId, String userName, String ini, List<String> roles) {
+	public UserDTO(int userId, String userName, String ini, List<String> roles, int cpr, String password) {
         this.userId = userId;
         this.userName = userName;
         this.ini = ini;
         this.roles = roles;
+        this.cpr = cpr;
+        this.password = password;
 	}
 	 
 	public UserDTO() {
@@ -34,13 +41,13 @@ public class UserDTO implements Serializable{
 	public String getUserName() {
 		return userName;
 	}
-	public void setUserName(String userName) {
+	public void setUserName(int Id, String userName) {
 		this.userName = userName;
 	}
 	public String getIni() {
 		return ini;
 	}
-	public void setIni(String ini) {
+	public void setIni(int Id, String ini) {
 		this.ini = ini;
 	}
 
