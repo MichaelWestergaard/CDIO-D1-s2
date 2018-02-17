@@ -1,7 +1,3 @@
-import simpel2lags.DemoData;
-import simpel2lags.IData;
-import simpel2lags.IUI;
-import simpel2lags.TUI;
 
 public class main {
 
