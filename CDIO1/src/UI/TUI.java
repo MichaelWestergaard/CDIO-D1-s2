@@ -2,6 +2,8 @@ package UI;
 
 import java.util.List;
 import java.util.Scanner;
+
+import dal.IUserDAO.DALException;
 import dal.userDAO;
 import dto.UserDTO;
 
@@ -41,7 +43,12 @@ public class TUI implements IUI {
 	
 	public void createUser() {
 		UserDTO user = new UserDTO(0, "Username", "ini", "Admin", "000000-0000", "Password");
-		
+		try {
+			userdata.createUser(user);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void listUsers() {
