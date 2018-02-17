@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import dto.UserDTO;
 
+<<<<<<< HEAD
 
 
 public class userDAO implements IUserDAO{
@@ -35,12 +36,14 @@ public class userDAO implements IUserDAO{
 	    }
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/MichaelWestergaard/CDIO-D1-s2.git
 public class userDAO implements IUserDAO{
 	Scanner scanner = new Scanner(System.in);
-		
+
 	@Override
-	public UserDTO getUser(int userId) throws DALException {
-		// TODO Auto-generated method stub
+	public UserDTO getUser(int userId) throws DALException {	
+		//brug for loop til at kører llisten igennem, og tjekker om ideeren er den samme. return userDTO
 		return null;
 	}
 
@@ -57,62 +60,26 @@ public class userDAO implements IUserDAO{
 		}
 	}
 
-	public void updateUserName(String newName) throws DALException { //Disse burde tag en int Id parameter? idk bg
-		UserDTO.setUserName(newName);
+	public void updateUserName(int userId, String userName) throws DALException { //Disse burde tag en int Id parameter? idk bg
+		UserDTO.setUserName(userName);
 	}
-	
-	public void updateUserID(int newUserId) throws DALException { //skal man kunne opdatere sit bruger id?
-		UserDTO.setUserId(newUserId);
-	}
-	
-	public void updateIni() throws DALException {
+
+
+	public void updateIni(int userId, int ini) throws DALException {
 
 	}
-	
+
 	public void updateRole() throws DALException {
 
 	}
-	
-	public void updateCpr() throws DALException {
+
+	public void updateCpr(int userId, String cpr ) throws DALException {
 
 	}
 
 	public void updatePassword() throws DALException {
 
 	}
-	
-/*	@Override
-	public void updateUser(UserDTO user) throws DALException {
-		System.out.println("Indtast bruger id: ");
-		int id = scanner.nextInt();
-		
-		System.out.println("Hvad vil du redigere?\n[1] Navn\n[2] Ini\n[3] Rolle ");
-		int action = scanner.nextInt();
-		switch (action) {
-			case 1:
-				System.out.println("Skriv et nyt brugernavn: ");
-				String newName = scanner.next();
-				UserDTO.setUserName(newName);
-				break;
-			case 2:
-				System.out.println("Skriv det nye Ini: ");
-				String newIni = scanner.next();
-				UserDTO.setIni(newIni);
-				break;
-			case 3:
-				System.out.println("Vælg den nye rolle: ");
-				String newIni = scanner.next();
-				UserDTO.setIni(newIni);
-				break;
-			default:
-				System.out.println("Ugyldig indtastning");
-				showMenu();
-		}
-	}
-		//Update username, updateID et som metode
-	} 
-
-*/
 
 	@Override
 	public void deleteUser(int userId) throws DALException {
@@ -120,19 +87,42 @@ public class userDAO implements IUserDAO{
 			LISTnavn.remove(getUser(userId));
 			System.out.println("Brugeren er blevet fjernet.");
 		}
-		
+
 		else {
 			System.out.println("Der findes ingen bruger med dette ID.");
 		}
-		
-		
+
+
 	}
 
 	@Override
 	public void updateUser(UserDTO user) throws DALException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-}
+//	@Override
+//	public void showUsers() throws DALException {
+//		System.out.println("Liste af brugerne:");
+//		for (String s : data.getAllUsers()) {
+//			System.out.println(s);
+//		}
+//	}
+//
+//	@Override
+//	public void showUser(int id) throws DALException {
+//		System.out.print("Indtast id: ");
+//		String input = scanner.next();
+//		int id = Integer.parseInt(input);
+//		String user;
+//		try {
+//			user = data.getUserName(id) + data.getUserAmount(id); 
+//			//i vores tilfælde hvad er data, fra tui klassen i sidste uges opgave?
+//			System.out.println(user);
+//		} catch (UserNotFoundException e) {
+//			System.out.println("Denne bruger er ikke fundet");
+//			e.printStackTrace();
+//		}
+//	}
+
 }
