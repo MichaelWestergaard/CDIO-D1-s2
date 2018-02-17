@@ -41,6 +41,7 @@ public class TUI implements IUI {
 	
 	public void createUser() {
 		UserDTO user = new UserDTO(0, "Username", "ini", "Admin", "000000-0000", "Password");
+		
 	}
 	
 	public void listUsers() {

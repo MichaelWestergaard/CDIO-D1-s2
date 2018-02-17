@@ -26,7 +26,7 @@ public class userDAO implements IUserDAO {
 	@Override
 	public void createUser(UserDTO user) throws DALException {
 		if(getUser(user.getUserId()) == null) {
-			users.add(new UserDTO(user.getUserId(), user.getUserName(), user.getIni(), user.getRole(), user.getCpr(), user.getPassword()));
+			users.add(user);
 		}
 	}
 
