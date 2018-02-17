@@ -3,7 +3,7 @@ package UI;
 import java.util.Scanner;
 import dal.userDAO;
 
-public class TUI {
+public class TUI implements IUI {
 	Scanner scan = new Scanner(System.in);
 	userDAO userdata;
 	
