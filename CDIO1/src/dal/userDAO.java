@@ -68,20 +68,36 @@ public class userDAO implements IUserDAO {
 	}
 
 	public void updateUserName(int userId, String userName) throws DALException { //Disse burde tag en int Id parameter? idk bg
-		UserDTO.setUserName(userName);
+		for(int i = 0; i < users.size(); i++) {
+			if(users.get(i).getUserId()==userId) {
+				userName = users.get(i).getUserName();
+			}
+		}
 	}
 
 
-	public void updateIni(int userId, int ini) throws DALException {
-
+	public void updateIni(int userId, String ini) throws DALException {
+		for(int i = 0; i < users.size(); i++) {
+			if(users.get(i).getUserId()==userId) {
+				ini = users.get(i).getIni();
+			}
+		}
 	}
 
-	public void updateRole() throws DALException {
-
+	public void updateRole(int userId, String role) throws DALException {
+		for(int i = 0; i < users.size(); i++) {
+			if(users.get(i).getUserId()==userId) {
+				role = users.get(i).getIni();
+			}
+		}
 	}
 
 	public void updateCpr(int userId, String cpr ) throws DALException {
-
+		for(int i = 0; i < users.size(); i++) {
+			if(users.get(i).getUserId()==userId) {
+				cpr = users.get(i).getIni();
+			}
+		}
 	}
 
 	public void updatePassword() throws DALException {
