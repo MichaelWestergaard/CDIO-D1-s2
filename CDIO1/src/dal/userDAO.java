@@ -10,7 +10,7 @@ import dto.UserDTO;
 
 public class userDAO implements IUserDAO{
 	
-	 public void showUsers() {
+/*	 public void showUsers() {
 	        System.out.println("Liste af brugerne:");
 	        for (String s : data.getAllUsers()) {
 	            System.out.println(s);
@@ -32,7 +32,7 @@ public class userDAO implements IUserDAO{
 				e.printStackTrace();
 			}
 	       
-	        
+	        */
 	    }
 
 
@@ -44,6 +44,9 @@ public class userDAO implements IUserDAO{
 	@Override
 	public UserDTO getUser(int userId) throws DALException {	
 		//brug for loop til at kører llisten igennem, og tjekker om ideeren er den samme. return userDTO
+		
+		for(int i = 0; i <)
+		
 		return null;
 	}
 
@@ -125,4 +128,5 @@ public class userDAO implements IUserDAO{
 //		}
 //	}
 
+}
 }
