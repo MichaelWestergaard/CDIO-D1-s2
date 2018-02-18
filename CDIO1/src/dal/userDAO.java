@@ -11,8 +11,12 @@ public class userDAO implements IUserDAO {
 	public UserDTO getUser(int userId) throws DALException {	
 		//brug for loop til at kører llisten igennem, og tjekker om ideeren er den samme. return userDTO
 		
-		for(int i = 0; i <)
-		
+		for(int i = 0; i < users.size(); i++) {
+			if(users.get(i).getUserId()==userId) {
+				
+				return users.get(i);
+			}
+		}
 		return null;
 	}
 	private List<UserDTO> users;
