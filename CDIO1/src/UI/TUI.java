@@ -14,7 +14,6 @@ public class TUI implements IUI {
 		this.userdata = (userDAO) data;
 	}
 	
-	@Override
 	public void showMenu() {
 		System.out.println(" --- | MENU | --- ");
 		System.out.println("[1] Create User\n[2] List Users\n[3] Edit User\n[4] Delete User\n[5] Exit");
@@ -42,7 +41,6 @@ public class TUI implements IUI {
 		}
 	}
 	
-	@Override
 	public void createUser() {
 		System.out.println(" --- | Create User | --- ");
 		
@@ -103,7 +101,6 @@ public class TUI implements IUI {
 		}
 	}
 	
-	@Override
 	public void listUsers() {
 		System.out.println(" --- | List Users | --- ");
 		try {
@@ -114,7 +111,6 @@ public class TUI implements IUI {
 		} 
 	}
 	
-	@Override
 	public void editUser() {
 		System.out.println(" --- | Edit User | --- ");
 		
@@ -127,7 +123,7 @@ public class TUI implements IUI {
 			
 			if(userdata.checkID()) { //Skal have oprettet "checkID" i DAO. Skal returnere true, hvis ID'et findes.
 				try {
-					System.out.println("You've entered the ID of user with username: '" + userdata.getUser(enteredID).getUserName() + "' and initials: '" + userdata.getUser(enteredID).getIni() + "'.");
+					System.out.println("You've entered the ID of user with username: '" + userdata.getUsername(enteredID) + "' and initials: '" + userdata.getIni(enteredID) + "'."); //Skal have lavet get-metoder
 				} catch (DALException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -207,8 +203,46 @@ public class TUI implements IUI {
 		}
 	}
 	
-	@Override
 	public void deleteUser() {
+		System.out.println(" --- | Delete User | --- ");
 		
+		boolean userFound = false;
+		int chosenID;
+		
+		while(!userFound) {
+			System.out.println("Enter the ID of the user you want to delete: ");		
+			int enteredID = scan.nextInt();	
+			
+			if(userdata.checkID()) { //Skal have oprettet "checkID" i DAO. Skal returnere true, hvis ID'et findes.
+				try {
+					System.out.println("You've entered the ID of user with username: '" + userdata.getUsername(enteredID) + "' and initials: '" + userdata.getIni(enteredID) + "'."); //Skal have lavet get-metoder
+				} catch (DALException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				userFound = true;
+				chosenID = enteredID;
+			} else {
+				System.out.println("The ID, you entered, is non-existent.");
+			}
+		}
+		
+		System.out.println("Do you want to delete this user?\n[1] Yes\n[2] No");
+		int action = scan.nextInt();
+		
+		switch(action) {
+		case 1:
+			userdata.deleteUser(chosenID);
+			System.out.println("The user has been deleted.");
+			break;
+		case 2:
+			deleteUser();
+			break;
+		default:
+			deleteUser();
+		}
 	}
+	
+	//Vigtigt: Skal have lavet en returnToMainMenu-metode
 }
