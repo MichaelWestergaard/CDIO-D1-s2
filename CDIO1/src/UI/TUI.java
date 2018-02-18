@@ -53,7 +53,7 @@ public class TUI implements IUI {
 			System.out.println("Enter username (2-20 characters): ");
 			String desiredUsername = scan.nextLine();
 			
-			if(userdata.checkUsername(desiredUsername)) { //Skal have oprettet "checkUsername" i DAO. Skal returnere true, hvis brugernavnet er gyldigt og ledigt.
+			if(userdata.checkUserName(desiredUsername)) { //Skal have oprettet "checkUsername" i DAO. Skal returnere true, hvis brugernavnet er gyldigt og ledigt.
 				username = desiredUsername;
 			} else {
 				System.out.println("The username, you entered, is either taken or invalid.");
@@ -124,9 +124,9 @@ public class TUI implements IUI {
 			System.out.println("Enter the ID of the user you want to edit: ");		
 			int enteredID = scan.nextInt();	
 			
-			if(userdata.checkID()) { //Skal have oprettet "checkID" i DAO. Skal returnere true, hvis ID'et findes.
+			if(userdata.checkId(enteredID)) { //Skal have oprettet "checkID" i DAO. Skal returnere true, hvis ID'et findes.
 				try {
-					System.out.println("You've entered the ID of user with username: '" + userdata.getUsername(enteredID) + "' and initials: '" + userdata.getIni(enteredID) + "'."); //Skal have lavet get-metoder
+					System.out.println("You've entered the ID of user with username: '" + userdata.getUserName(enteredID) + "' and initials: '" + userdata.getIni(enteredID) + "'."); //Skal have lavet get-metoder
 				} catch (DALException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -154,7 +154,7 @@ public class TUI implements IUI {
 					System.out.println("Enter username (2-20 characters): ");
 					String desiredUsername = scan.nextLine();
 					
-					if(userdata.checkUsername(desiredUsername)) {
+					if(userdata.checkUserName(desiredUsername)) {
 						username = desiredUsername;
 					} else {
 						System.out.println("The username, you entered, is either taken or invalid.");
@@ -216,7 +216,7 @@ public class TUI implements IUI {
 			System.out.println("Enter the ID of the user you want to delete: ");		
 			int enteredID = scan.nextInt();	
 			
-			if(userdata.checkID()) { //Skal have oprettet "checkID" i DAO. Skal returnere true, hvis ID'et findes.
+			if(userdata.checkId(enteredID)) { //Skal have oprettet "checkID" i DAO. Skal returnere true, hvis ID'et findes.
 				try {
 					System.out.println("You've entered the ID of user with username: '" + userdata.getUsername(enteredID) + "' and initials: '" + userdata.getIni(enteredID) + "'."); //Skal have lavet get-metoder
 				} catch (DALException e) {
@@ -240,10 +240,10 @@ public class TUI implements IUI {
 			System.out.println("The user has been deleted.");
 			break;
 		case 2:
-			deleteUser();
+			showMenu();
 			break;
 		default:
-			deleteUser();
+			showMenu();
 		}
 	}
 	
