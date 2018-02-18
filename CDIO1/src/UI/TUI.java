@@ -240,10 +240,10 @@ public class TUI implements IUI {
 			System.out.println("The user has been deleted.");
 			break;
 		case 2:
-			deleteUser();
+			showMenu();
 			break;
 		default:
-			deleteUser();
+			showMenu();
 		}
 	}
 	
