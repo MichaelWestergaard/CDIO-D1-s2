@@ -6,45 +6,8 @@ import java.util.Scanner;
 
 import dto.UserDTO;
 
-<<<<<<< HEAD
-public class userDAO implements IUserDAO{
-	
-/*	 public void showUsers() {
-	        System.out.println("Liste af brugerne:");
-	        for (String s : data.getAllUsers()) {
-	            System.out.println(s);
-	        }
-	    }
-
-	    @Override
-	    public void showUser() {
-	        System.out.print("Indtast id: ");
-	        String input = scanner.next();
-	        int id = Integer.parseInt(input);
-	        String user;
-			try {
-				user = data.getUserName(id) + data.getUserAmount(id); 
-				//i vores tilfælde hvad er data, fra tui klassen i sidste uges opgave?
-				System.out.println(user);
-			} catch (UserNotFoundException e) {
-				System.out.println("Denne bruger er ikke fundet");
-				e.printStackTrace();
-			}
-	       
-	        */
-	    }
-
-
-=======
->>>>>>> branch 'master' of https://github.com/MichaelWestergaard/CDIO-D1-s2.git
-public class userDAO implements IUserDAO{
-=======
 public class userDAO implements IUserDAO {
->>>>>>> branch 'master' of https://github.com/MichaelWestergaard/CDIO-D1-s2.git
-	Scanner scanner = new Scanner(System.in);
 
-
-	@Override
 	public UserDTO getUser(int userId) throws DALException {	
 		//brug for loop til at kører llisten igennem, og tjekker om ideeren er den samme. return userDTO
 		
@@ -54,13 +17,11 @@ public class userDAO implements IUserDAO {
 	}
 	private List<UserDTO> users;
 
-	@Override
 	public List<UserDTO> getUserList() throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public void createUser(UserDTO user) throws DALException {
 		if(getUser(user.getUserId()) == null) {
 			users.add(user);
@@ -121,7 +82,6 @@ public class userDAO implements IUserDAO {
 
 	}
 
-	@Override
 	public void deleteUser(int userId) throws DALException {
 		if(LISTnavn.contains(getUser(userId))) {			//Bør man også tjekke brugerens 'role'?
 			LISTnavn.remove(getUser(userId));
@@ -134,47 +94,20 @@ public class userDAO implements IUserDAO {
 
 	}
 
-	@Override
 	public void updateUser(UserDTO user) throws DALException {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void showUsers() throws DALException {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void showUser(int id) throws DALException {
 		// TODO Auto-generated method stub
 
 	}
 
-	//	@Override
-	//	public void showUsers() throws DALException {
-	//		System.out.println("Liste af brugerne:");
-	//		for (String s : data.getAllUsers()) {
-	//			System.out.println(s);
-	//		}
-	//	}
-	//
-	//	@Override
-	//	public void showUser(int id) throws DALException {
-	//		System.out.print("Indtast id: ");
-	//		String input = scanner.next();
-	//		int id = Integer.parseInt(input);
-	//		String user;
-	//		try {
-	//			user = data.getUserName(id) + data.getUserAmount(id); 
-	//			//i vores tilfælde hvad er data, fra tui klassen i sidste uges opgave?
-	//			System.out.println(user);
-	//		} catch (UserNotFoundException e) {
-	//			System.out.println("Denne bruger er ikke fundet");
-	//			e.printStackTrace();
-	//		}
-	//	}
+}
 
-}
-}
