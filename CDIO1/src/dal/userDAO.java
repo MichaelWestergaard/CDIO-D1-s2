@@ -23,7 +23,9 @@ public class userDAO implements IUserDAO {
 
 	public List<UserDTO> getUserList() throws DALException {
 		// TODO Auto-generated method stub
-		return null;
+		return users;
+		
+		
 	}
 
 	public void createUser(UserDTO user) throws DALException {

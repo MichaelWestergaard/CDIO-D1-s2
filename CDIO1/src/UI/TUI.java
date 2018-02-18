@@ -104,7 +104,10 @@ public class TUI implements IUI {
 	public void listUsers() {
 		System.out.println(" --- | List Users | --- ");
 		try {
-			userdata.showUsers(); //Skal have udfyldt "showUsers" i DAO.
+			for(int i = 0;i < userdata.getUserList().size();i++) {
+				System.out.println(userdata.getUserList().get(i));
+			}
+				
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
