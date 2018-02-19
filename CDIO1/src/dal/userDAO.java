@@ -1,32 +1,22 @@
 package dal;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
 import dto.UserDTO;
 
 public class userDAO implements IUserDAO {
 	private List<UserDTO> users;
 
 	public UserDTO getUser(int userId) throws DALException {	
-		//brug for loop til at kører llisten igennem, og tjekker om ideeren er den samme. return userDTO
-		
 		for(int i = 0; i < users.size(); i++) {
 			if(users.get(i).getUserId()==userId) {
-				
 				return users.get(i);
 			}
 		}
 		return null;
 	}
-	
 
 	public List<UserDTO> getUserList() throws DALException {
-		// TODO Auto-generated method stub
 		return users;
-		
-		
 	}
 
 	public void createUser(UserDTO user) throws DALException {
@@ -79,7 +69,7 @@ public class userDAO implements IUserDAO {
 		}
 		return false;
 	}
-	
+
 	public boolean checkIni(String ini) {
 		if(ini.length() >= 2 && ini.length() <= 4) {
 			for(int i = 0; i < users.size(); i++) {
@@ -90,29 +80,27 @@ public class userDAO implements IUserDAO {
 		}
 		return false;
 	}
-	
+
 	public boolean checkRole(String role) {
 		if (role == "Admin" || role == "Pharmacist" || role == "Foreman" || role == "Operator") {
 			return true;
 		}
-			return false;
+		return false;
 	}
 
 	public boolean checkCPR(String cpr) { // Ikke lavet
 		return true;
 	}
-	
+
 	public boolean checkId(int userId) {
 		for(int i = 0; i < users.size(); i++) {
-			
+
 			if(users.get(i).getUserId() == userId) {
-			return true;
+				return true;
 			}
-	}
+		}
 		return false;
 	}
-	
-	
 	
 	public void updateUserName(int userId, String userName) throws DALException { //Disse burde tag en int Id parameter? idk bg
 		for(int i = 0; i < users.size(); i++) {
@@ -121,7 +109,6 @@ public class userDAO implements IUserDAO {
 			}
 		}
 	}
-
 
 	public void updateIni(int userId, String ini) throws DALException {
 		for(int i = 0; i < users.size(); i++) {
@@ -162,15 +149,4 @@ public class userDAO implements IUserDAO {
 
 	}
 
-	public void showUsers() throws DALException {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void showUser(int id) throws DALException {
-		// TODO Auto-generated method stub
-
-	}
-
 }
-
