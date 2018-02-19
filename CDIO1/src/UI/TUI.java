@@ -1,5 +1,6 @@
 package UI;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import dal.IUserDAO;
@@ -16,6 +17,20 @@ public class TUI implements IUI {
 	}
 	
 	public void showMenu() {
+
+		try {
+			userdata.getUserList();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		System.out.println(" --- | MENU | --- ");
 		System.out.println("[1] Create User\n[2] List Users\n[3] Edit User\n[4] Delete User\n[5] Exit");
 		
@@ -114,6 +129,9 @@ public class TUI implements IUI {
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -125,6 +143,12 @@ public class TUI implements IUI {
 			}
 				
 		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
@@ -226,7 +250,7 @@ public class TUI implements IUI {
 		System.out.println(" --- | Delete User | --- ");
 		
 		boolean userFound = false;
-		int chosenID;
+		int chosenID = 0;
 		
 		while(!userFound) {
 			System.out.println("Enter the ID of the user you want to delete: ");		
@@ -234,7 +258,7 @@ public class TUI implements IUI {
 			
 			if(userdata.checkId(enteredID)) { //Skal have oprettet "checkID" i DAO. Skal returnere true, hvis ID'et findes.
 				try {
-					System.out.println("You've entered the ID of user with username: '" + userdata.getUsername(enteredID) + "' and initials: '" + userdata.getIni(enteredID) + "'."); //Skal have lavet get-metoder
+					System.out.println("You've entered the ID of user with username: '" + userdata.getUser(enteredID).getUserName() + "' and initials: '" + userdata.getUser(enteredID).getIni() + "'."); //Skal have lavet get-metoder
 				} catch (DALException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -252,7 +276,15 @@ public class TUI implements IUI {
 		
 		switch(action) {
 		case 1:
-			userdata.deleteUser(chosenID);
+			try {
+				userdata.deleteUser(chosenID);
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.println("The user has been deleted.");
 			break;
 		case 2:

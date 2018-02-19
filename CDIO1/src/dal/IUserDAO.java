@@ -1,12 +1,14 @@
 package dal;
+import java.io.IOException;
+
 import dto.UserDTO;
 
 public interface IUserDAO {
 
 	UserDTO getUser(int userId) throws DALException;
-	void createUser(int userID, String userName, String ini, String role, String cpr) throws DALException;
+	void createUser(int userID, String userName, String ini, String role, String cpr) throws DALException, IOException;
 	void updateUser(UserDTO user) throws DALException;
-	void deleteUser(int userId) throws DALException;
+	void deleteUser(int userId) throws DALException, IOException;
 	
 	
 	public class DALException extends Exception {
