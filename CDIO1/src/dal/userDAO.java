@@ -228,7 +228,7 @@ public class userDAO implements IUserDAO {
 	}
 
 	public void deleteUser(int userId) throws DALException, IOException {
-		if(users.contains(getUser(userId))) {			//Bør man også tjekke brugerens 'role'?
+		if(users.contains(getUser(userId))) {			//Bør man også tjekke brugerens 'role'? ''
 			users.remove(getUser(userId));
 			saveUsers();
 		}
