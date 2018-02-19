@@ -45,10 +45,23 @@ public class TUI implements IUI {
 	public void createUser() {
 		System.out.println(" --- | Create User | --- ");
 		
+		int userID = 0;
 		String username = null;
 		String ini = null;
 		String role = null; //Gyldige roller: Admin, Pharmacist, Foreman, Operator
 		String cpr = null;
+		
+		while(userID == 0) {
+			System.out.println("Enter user ID (11-99): ");
+			int desiredID = scan.nextInt();
+
+			if(!userdata.checkId(desiredID)) { //Skal have oprettet "checkUsername" i DAO. Skal returnere true, hvis brugernavnet er gyldigt og ledigt.
+				userID = desiredID;
+			} else {
+				System.out.println("The user ID, you entered, is either taken or invalid.");
+			}
+		}
+		
 		
 		while(username == null) {
 			System.out.println("Enter username (2-20 characters): ");
@@ -63,7 +76,7 @@ public class TUI implements IUI {
 		
 		while(ini == null) {
 			System.out.println("Enter your initials (2-4 characters): ");
-			String desiredIni = scan.nextLine().toUpperCase();
+			String desiredIni = scan.next().toUpperCase();
 			
 			if(userdata.checkIni(desiredIni)) { //Skal have oprettet "checkIni" i DAO. Skal returnere true, hvis initialerne er gyldige.
 				ini = desiredIni;
@@ -74,7 +87,7 @@ public class TUI implements IUI {
 		
 		while(role == null) {
 			System.out.println("Enter your role: ");
-			String desiredRole = scan.nextLine();
+			String desiredRole = scan.next();
 			
 			if(userdata.checkRole(desiredRole)) { //Skal have oprettet "checkRole" i DAO. Skal returnere true, hvis rollen er gyldig.
 				role = desiredRole;
@@ -95,7 +108,7 @@ public class TUI implements IUI {
 		}
 		
 		try {
-			userdata.createUser(11, username, ini, role, cpr, "gg"); //Skal have ordnet "createUser" i DAO, så den tager imod disse parametre, og selv generere ID og password.
+			userdata.createUser(id, username, ini, role, cpr, "gg"); //Skal have ordnet "createUser" i DAO, så den tager imod disse parametre, og selv generere ID og password.
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

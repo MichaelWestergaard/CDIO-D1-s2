@@ -5,7 +5,7 @@ import java.util.List;
 import dto.UserDTO;
 
 public class userDAO implements IUserDAO {
-	private List<UserDTO> users = new ArrayList();
+	private List<UserDTO> users = new ArrayList<UserDTO>();
 
 	public UserDTO getUser(int userId) throws DALException {	
 		for(int i = 0; i < users.size(); i++) {
@@ -62,28 +62,32 @@ public class userDAO implements IUserDAO {
 
 	public boolean checkUserName(String userName) {
 		if(userName.length() >= 2 && userName.length() <= 20) {
-			for(int i = 0; i < users.size(); i++) {
-				if(users.get(i).getUserName() != userName) {
-					return true;
+			for(int i = 0; i < users.size();i++) {
+				if(users.get(i).getUserName().equals(userName)) {
+					return false;
 				}
 			}
+		} else {
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	public boolean checkIni(String ini) {
 		if(ini.length() >= 2 && ini.length() <= 4) {
 			for(int i = 0; i < users.size(); i++) {
-				if(users.get(i).getIni() != ini) {
-					return true;
+				if(users.get(i).getIni().equals(ini)) {
+					return false;
 				}
 			}
+		} else {
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	public boolean checkRole(String role) {
-		if (role == "Admin" || role == "Pharmacist" || role == "Foreman" || role == "Operator") {
+		if (role.toLowerCase().equals("admin") || role.equals("pharmacist") || role.equals("foreman") || role.equals("operator")) {
 			return true;
 		}
 		return false;
