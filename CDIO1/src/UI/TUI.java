@@ -5,6 +5,7 @@ import java.util.Scanner;
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
 import dal.userDAO;
+import dto.UserDTO;
 
 public class TUI implements IUI {
 	Scanner scan = new Scanner(System.in);
@@ -44,14 +45,14 @@ public class TUI implements IUI {
 	public void createUser() {
 		System.out.println(" --- | Create User | --- ");
 		
-		String username;
-		String ini;
-		String role; //Gyldige roller: Admin, Pharmacist, Foreman, Operator
-		String cpr;
+		String username = null;
+		String ini = null;
+		String role = null; //Gyldige roller: Admin, Pharmacist, Foreman, Operator
+		String cpr = null;
 		
 		while(username == null) {
 			System.out.println("Enter username (2-20 characters): ");
-			String desiredUsername = scan.nextLine();
+			String desiredUsername = scan.next();
 			
 			if(userdata.checkUserName(desiredUsername)) { //Skal have oprettet "checkUsername" i DAO. Skal returnere true, hvis brugernavnet er gyldigt og ledigt.
 				username = desiredUsername;
@@ -94,7 +95,7 @@ public class TUI implements IUI {
 		}
 		
 		try {
-			userdata.createUser(username, ini, role, cpr); //Skal have ordnet "createUser" i DAO, så den tager imod disse parametre, og selv generere ID og password.
+			userdata.createUser(11, username, ini, role, cpr, "gg"); //Skal have ordnet "createUser" i DAO, så den tager imod disse parametre, og selv generere ID og password.
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,10 +1,11 @@
 package dal;
 
+import java.util.ArrayList;
 import java.util.List;
 import dto.UserDTO;
 
 public class userDAO implements IUserDAO {
-	private List<UserDTO> users;
+	private List<UserDTO> users = new ArrayList();
 
 	public UserDTO getUser(int userId) throws DALException {	
 		for(int i = 0; i < users.size(); i++) {
@@ -19,9 +20,9 @@ public class userDAO implements IUserDAO {
 		return users;
 	}
 
-	public void createUser(UserDTO user) throws DALException {
-		if(getUser(user.getUserId()) == null) {
-			users.add(user);
+	public void createUser(int userID, String userName, String ini, String role, String cpr, String password) throws DALException {
+		if(getUser(userID) == null) {
+			users.add(new UserDTO(userID, userName, ini, role, cpr, password));
 		}
 	}
 
