@@ -108,7 +108,9 @@ public class TUI implements IUI {
 		}
 		
 		try {
-			userdata.createUser(id, username, ini, role, cpr, "gg"); //Skal have ordnet "createUser" i DAO, så den tager imod disse parametre, og selv generere ID og password.
+
+			userdata.createUser(userID, username, ini, role, cpr); //Skal have ordnet "createUser" i DAO, så den tager imod disse parametre, og selv generere ID og password.
+
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

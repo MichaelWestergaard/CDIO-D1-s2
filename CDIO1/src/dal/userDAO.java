@@ -1,5 +1,12 @@
 package dal;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import dto.UserDTO;
@@ -16,12 +23,34 @@ public class userDAO implements IUserDAO {
 		return null;
 	}
 
-	public List<UserDTO> getUserList() throws DALException {
+	public List<UserDTO> getUserList() throws DALException, IOException, ClassNotFoundException {
+		FileInputStream fi = new FileInputStream(new File("users.data"));
+		ObjectInputStream oi = new ObjectInputStream(fi);
+
+		// Read objects
+		UserDTO pr1 = (UserDTO) oi.readObject();
+		
+		oi.close();
+		fi.close();
+		users = (List<UserDTO>) pr1;
 		return users;
 	}
+	
+	public void saveUsers() throws IOException {
+		FileOutputStream f;
+			f = new FileOutputStream(new File("users.data"));
+			ObjectOutputStream o = new ObjectOutputStream(f);
 
-	public void createUser(int userID, String userName, String ini, String role, String cpr, String password) throws DALException {
+			// Write objects to file
+			o.writeObject(users);
+
+			o.close();
+			f.close();
+	}
+
+	public void createUser(int userID, String userName, String ini, String role, String cpr) throws DALException {
 		if(getUser(userID) == null) {
+			String password = makePassword(10);
 			users.add(new UserDTO(userID, userName, ini, role, cpr, password));
 		}
 	}
@@ -139,15 +168,39 @@ public class userDAO implements IUserDAO {
 		}
 	}
 	
-	public String generatePassword() throws DALException{
+
 		/* Adgangskoden skal indeholde mindst 6 tegn af mindst tre af de følgende fire kategorier: små bogstaver (’a’ til ’z’), store bogstaver (’A’ til ’Z’), cifre (’0’ til ’9’) og specialtegn (som defineret herunder).
 	    Undgå at bruge dit fornavn, efternavn eller bruger-ID som en del af din adgangskode, da dette vil medføre problemer med at logge ind på nogle systemer og tjenester på DTU, især Windows-tjenester.
 	    Anvend blot følgende special-tegn: {'.', '-', '_', '+', '!', '?', '='} */
+		public static String makePassword(int length){
+			String password = "";
+
+			for(int i = 0; i < length - 2 ; i++) {
+				password = password + randomCharacter("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+				
+			}
+			String randomDigit = randomCharacter("0123456789");
+			password = insertAtRandom(password, randomDigit);
+			String randomSymbol = randomCharacter(".-_+!?=");
+			password = insertAtRandom(password, randomSymbol);
+			return password;
+		}
+
+		public static String randomCharacter(String characters) {
+			int n = characters.length();
+			int r = (int) (n*Math.random());
+			return characters.substring(r,r + 1);
+		}
+
+		public static String insertAtRandom(String str, String toInsert) {
+			int n = str.length();
+			int r = (int) ((n+1) * Math.random());
+			return str.substring(0,r) + toInsert + str.substring(r);
+
+		}
+	
 		
-		
-		return null;
-		
-	}
+	
 	
 
 	public void updatePassword() throws DALException {
