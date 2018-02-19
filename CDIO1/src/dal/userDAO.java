@@ -118,8 +118,30 @@ public class userDAO implements IUserDAO {
 		return false;
 	}
 
-	public boolean checkCPR(String cpr) { // Ikke lavet
-		return true;
+	public boolean checkCPR(String cpr) {
+		String[] splitCPR = cpr.split("-");
+		String combinedCPR = splitCPR[0] + splitCPR[1];
+		char[] cprChars = combinedCPR.toCharArray();
+		int cprDay = Integer.parseInt(new StringBuilder().append(cprChars[0]).append(cprChars[1]).toString());
+		int cprMonth = Integer.parseInt(new StringBuilder().append(cprChars[2]).append(cprChars[3]).toString());
+		int cprYear = Integer.parseInt(new StringBuilder().append(cprChars[4]).append(cprChars[5]).toString());
+		boolean cprDublicate = false;
+		
+		if(cpr.length() == 11) {
+			if(cprDay > 0 && cprDay < 32 && cprMonth > 0 && cprMonth < 13 && cprYear >= 0 && cprYear <= 99) {
+				for(int i = 0; i < users.size(); i++) {
+					if(users.get(i).getCpr() == cpr) {
+						cprDublicate = true;
+						break;
+					}
+				}
+				
+				if(!cprDublicate) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public boolean checkId(int userId) {
