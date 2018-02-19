@@ -133,6 +133,17 @@ public class userDAO implements IUserDAO {
 			}
 		}
 	}
+	
+	public String generatePassword() throws DALException{
+		/* Adgangskoden skal indeholde mindst 6 tegn af mindst tre af de følgende fire kategorier: små bogstaver (’a’ til ’z’), store bogstaver (’A’ til ’Z’), cifre (’0’ til ’9’) og specialtegn (som defineret herunder).
+	    Undgå at bruge dit fornavn, efternavn eller bruger-ID som en del af din adgangskode, da dette vil medføre problemer med at logge ind på nogle systemer og tjenester på DTU, især Windows-tjenester.
+	    Anvend blot følgende special-tegn: {'.', '-', '_', '+', '!', '?', '='} */
+		
+		
+		return null;
+		
+	}
+	
 
 	public void updatePassword() throws DALException {
 
