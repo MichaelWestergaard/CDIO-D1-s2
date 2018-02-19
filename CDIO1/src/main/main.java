@@ -46,7 +46,7 @@ public class main {
 //		
 //		FileInputStream fi;
 //		try {
-//			fi = new FileInputStream(new File("myObjects.txt"));
+//			FileInputStream fi = new FileInputStream(new File("myObjects.txt"));
 //			ObjectInputStream oi = new ObjectInputStream(fi);
 //
 //			// Read objects

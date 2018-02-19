@@ -1,5 +1,9 @@
 package dal;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import dto.UserDTO;
@@ -17,7 +21,20 @@ public class userDAO implements IUserDAO {
 	}
 
 	public List<UserDTO> getUserList() throws DALException {
+		
 		return users;
+	}
+	
+	public void saveUsers() throws IOException {
+		FileOutputStream f;
+			f = new FileOutputStream(new File("users.data"));
+			ObjectOutputStream o = new ObjectOutputStream(f);
+
+			// Write objects to file
+			o.writeObject(users);
+
+			o.close();
+			f.close();
 	}
 
 	public void createUser(int userID, String userName, String ini, String role, String cpr, String password) throws DALException {
