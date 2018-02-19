@@ -7,9 +7,10 @@ public interface IUserDAO {
 
 	UserDTO getUser(int userId) throws DALException;
 	List<UserDTO> getUserList() throws DALException;
-	void createUser(int userID, String userName, String ini, String role, String cpr, String password) throws DALException;
+	void createUser(int userID, String userName, String ini, String role, String cpr) throws DALException;
 	void updateUser(UserDTO user) throws DALException;
 	void deleteUser(int userId) throws DALException;
+	
 	
 	public class DALException extends Exception {
 

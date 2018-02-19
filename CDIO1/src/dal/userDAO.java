@@ -37,8 +37,9 @@ public class userDAO implements IUserDAO {
 			f.close();
 	}
 
-	public void createUser(int userID, String userName, String ini, String role, String cpr, String password) throws DALException {
+	public void createUser(int userID, String userName, String ini, String role, String cpr) throws DALException {
 		if(getUser(userID) == null) {
+			String password = makePassword(10);
 			users.add(new UserDTO(userID, userName, ini, role, cpr, password));
 		}
 	}
