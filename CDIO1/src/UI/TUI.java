@@ -166,7 +166,7 @@ public class TUI implements IUI {
 			
 			if(userdata.checkId(enteredID)) { //Skal have oprettet "checkID" i DAO. Skal returnere true, hvis ID'et findes.
 				try {
-					System.out.println("You've entered the ID of user with username: '" + userdata.getUserName(enteredID) + "' and initials: '" + userdata.getIni(enteredID) + "'."); //Skal have lavet get-metoder
+					System.out.println("You've entered the ID of user with username: '" + userdata.getUser(enteredID).getUserName() + "' and initials: '" + userdata.getUser(enteredID).getIni() + "'."); //Skal have lavet get-metoder
 				} catch (DALException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
