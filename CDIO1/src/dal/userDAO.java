@@ -12,7 +12,7 @@ import java.util.List;
 import dto.UserDTO;
 
 public class userDAO implements IUserDAO {
-	private List<UserDTO> users = new ArrayList();
+	private List<UserDTO> users = new ArrayList<UserDTO>();
 
 	public UserDTO getUser(int userId) throws DALException {	
 		for(int i = 0; i < users.size(); i++) {
@@ -28,30 +28,28 @@ public class userDAO implements IUserDAO {
 		ObjectInputStream oi = new ObjectInputStream(fi);
 
 		// Read objects
-		UserDTO pr1 = (UserDTO) oi.readObject();
-		
+		users = (List<UserDTO>) oi.readObject();
 		oi.close();
 		fi.close();
-		users = (List<UserDTO>) pr1;
 		return users;
 	}
-	
+
 	public void saveUsers() throws IOException {
-		FileOutputStream f;
-			f = new FileOutputStream(new File("users.data"));
-			ObjectOutputStream o = new ObjectOutputStream(f);
+		FileOutputStream f = new FileOutputStream(new File("users.data"));
+		ObjectOutputStream o = new ObjectOutputStream(f);
 
-			// Write objects to file
-			o.writeObject(users);
+		// Write objects to file
+		o.writeObject(users);
 
-			o.close();
-			f.close();
+		o.close();
+		f.close();
 	}
 
-	public void createUser(int userID, String userName, String ini, String role, String cpr) throws DALException {
+	public void createUser(int userID, String userName, String ini, String role, String cpr) throws DALException, IOException {
 		if(getUser(userID) == null) {
 			String password = makePassword(10);
 			users.add(new UserDTO(userID, userName, ini, role, cpr, password));
+			saveUsers();
 		}
 	}
 
@@ -91,28 +89,32 @@ public class userDAO implements IUserDAO {
 
 	public boolean checkUserName(String userName) {
 		if(userName.length() >= 2 && userName.length() <= 20) {
-			for(int i = 0; i < users.size(); i++) {
-				if(users.get(i).getUserName() != userName) {
-					return true;
+			for(int i = 0; i < users.size();i++) {
+				if(users.get(i).getUserName().equals(userName)) {
+					return false;
 				}
 			}
+		} else {
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	public boolean checkIni(String ini) {
 		if(ini.length() >= 2 && ini.length() <= 4) {
 			for(int i = 0; i < users.size(); i++) {
-				if(users.get(i).getIni() != ini) {
-					return true;
+				if(users.get(i).getIni().equals(ini)) {
+					return false;
 				}
 			}
+		} else {
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	public boolean checkRole(String role) {
-		if (role == "Admin" || role == "Pharmacist" || role == "Foreman" || role == "Operator") {
+		if (role.toLowerCase().equals("admin") || role.equals("pharmacist") || role.equals("foreman") || role.equals("operator")) {
 			return true;
 		}
 		return false;
@@ -153,7 +155,7 @@ public class userDAO implements IUserDAO {
 		}
 		return false;
 	}
-	
+
 	public void updateUserName(int userId, String userName) throws DALException { //Disse burde tag en int Id parameter? idk bg
 		for(int i = 0; i < users.size(); i++) {
 			if(users.get(i).getUserId()==userId) {
@@ -185,49 +187,50 @@ public class userDAO implements IUserDAO {
 			}
 		}
 	}
-	
 
-		/* Adgangskoden skal indeholde mindst 6 tegn af mindst tre af de følgende fire kategorier: små bogstaver (’a’ til ’z’), store bogstaver (’A’ til ’Z’), cifre (’0’ til ’9’) og specialtegn (som defineret herunder).
+
+	/* Adgangskoden skal indeholde mindst 6 tegn af mindst tre af de følgende fire kategorier: små bogstaver (’a’ til ’z’), store bogstaver (’A’ til ’Z’), cifre (’0’ til ’9’) og specialtegn (som defineret herunder).
 	    Undgå at bruge dit fornavn, efternavn eller bruger-ID som en del af din adgangskode, da dette vil medføre problemer med at logge ind på nogle systemer og tjenester på DTU, især Windows-tjenester.
 	    Anvend blot følgende special-tegn: {'.', '-', '_', '+', '!', '?', '='} */
-		public static String makePassword(int length){
-			String password = "";
+	public static String makePassword(int length){
+		String password = "";
 
-			for(int i = 0; i < length - 2 ; i++) {
-				password = password + randomCharacter("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
-				
-			}
-			String randomDigit = randomCharacter("0123456789");
-			password = insertAtRandom(password, randomDigit);
-			String randomSymbol = randomCharacter(".-_+!?=");
-			password = insertAtRandom(password, randomSymbol);
-			return password;
-		}
-
-		public static String randomCharacter(String characters) {
-			int n = characters.length();
-			int r = (int) (n*Math.random());
-			return characters.substring(r,r + 1);
-		}
-
-		public static String insertAtRandom(String str, String toInsert) {
-			int n = str.length();
-			int r = (int) ((n+1) * Math.random());
-			return str.substring(0,r) + toInsert + str.substring(r);
+		for(int i = 0; i < length - 2 ; i++) {
+			password = password + randomCharacter("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
 		}
-	
-		
-	
-	
+		String randomDigit = randomCharacter("0123456789");
+		password = insertAtRandom(password, randomDigit);
+		String randomSymbol = randomCharacter(".-_+!?=");
+		password = insertAtRandom(password, randomSymbol);
+		return password;
+	}
+
+	public static String randomCharacter(String characters) {
+		int n = characters.length();
+		int r = (int) (n*Math.random());
+		return characters.substring(r,r + 1);
+	}
+
+	public static String insertAtRandom(String str, String toInsert) {
+		int n = str.length();
+		int r = (int) ((n+1) * Math.random());
+		return str.substring(0,r) + toInsert + str.substring(r);
+
+	}
+
+
+
+
 
 	public void updatePassword() throws DALException {
 
 	}
 
-	public void deleteUser(int userId) throws DALException {
+	public void deleteUser(int userId) throws DALException, IOException {
 		if(users.contains(getUser(userId))) {			//Bør man også tjekke brugerens 'role'?
 			users.remove(getUser(userId));
+			saveUsers();
 		}
 	}
 

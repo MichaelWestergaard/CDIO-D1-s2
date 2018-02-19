@@ -1,5 +1,6 @@
 package UI;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import dal.IUserDAO;
@@ -16,6 +17,20 @@ public class TUI implements IUI {
 	}
 	
 	public void showMenu() {
+
+		try {
+			userdata.getUserList();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		System.out.println(" --- | MENU | --- ");
 		System.out.println("[1] Create User\n[2] List Users\n[3] Edit User\n[4] Delete User\n[5] Exit");
 		
@@ -45,10 +60,23 @@ public class TUI implements IUI {
 	public void createUser() {
 		System.out.println(" --- | Create User | --- ");
 		
+		int userID = 0;
 		String username = null;
 		String ini = null;
 		String role = null; //Gyldige roller: Admin, Pharmacist, Foreman, Operator
 		String cpr = null;
+		
+		while(userID == 0) {
+			System.out.println("Enter user ID (11-99): ");
+			int desiredID = scan.nextInt();
+
+			if(!userdata.checkId(desiredID)) { //Skal have oprettet "checkUsername" i DAO. Skal returnere true, hvis brugernavnet er gyldigt og ledigt.
+				userID = desiredID;
+			} else {
+				System.out.println("The user ID, you entered, is either taken or invalid.");
+			}
+		}
+		
 		
 		while(username == null) {
 			System.out.println("Enter username (2-20 characters): ");
@@ -63,7 +91,7 @@ public class TUI implements IUI {
 		
 		while(ini == null) {
 			System.out.println("Enter your initials (2-4 characters): ");
-			String desiredIni = scan.nextLine().toUpperCase();
+			String desiredIni = scan.next().toUpperCase();
 			
 			if(userdata.checkIni(desiredIni)) { //Skal have oprettet "checkIni" i DAO. Skal returnere true, hvis initialerne er gyldige.
 				ini = desiredIni;
@@ -74,7 +102,7 @@ public class TUI implements IUI {
 		
 		while(role == null) {
 			System.out.println("Enter your role: ");
-			String desiredRole = scan.nextLine();
+			String desiredRole = scan.next();
 			
 			if(userdata.checkRole(desiredRole)) { //Skal have oprettet "checkRole" i DAO. Skal returnere true, hvis rollen er gyldig.
 				role = desiredRole;
@@ -95,8 +123,13 @@ public class TUI implements IUI {
 		}
 		
 		try {
-			userdata.createUser(11, username, ini, role, cpr); //Skal have ordnet "createUser" i DAO, så den tager imod disse parametre, og selv generere ID og password.
+
+			userdata.createUser(userID, username, ini, role, cpr); //Skal have ordnet "createUser" i DAO, så den tager imod disse parametre, og selv generere ID og password.
+
 		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -110,6 +143,12 @@ public class TUI implements IUI {
 			}
 				
 		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
@@ -211,7 +250,7 @@ public class TUI implements IUI {
 		System.out.println(" --- | Delete User | --- ");
 		
 		boolean userFound = false;
-		int chosenID;
+		int chosenID = 0;
 		
 		while(!userFound) {
 			System.out.println("Enter the ID of the user you want to delete: ");		
@@ -219,7 +258,7 @@ public class TUI implements IUI {
 			
 			if(userdata.checkId(enteredID)) { //Skal have oprettet "checkID" i DAO. Skal returnere true, hvis ID'et findes.
 				try {
-					System.out.println("You've entered the ID of user with username: '" + userdata.getUsername(enteredID) + "' and initials: '" + userdata.getIni(enteredID) + "'."); //Skal have lavet get-metoder
+					System.out.println("You've entered the ID of user with username: '" + userdata.getUser(enteredID).getUserName() + "' and initials: '" + userdata.getUser(enteredID).getIni() + "'."); //Skal have lavet get-metoder
 				} catch (DALException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -237,7 +276,15 @@ public class TUI implements IUI {
 		
 		switch(action) {
 		case 1:
-			userdata.deleteUser(chosenID);
+			try {
+				userdata.deleteUser(chosenID);
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.println("The user has been deleted.");
 			break;
 		case 2:
