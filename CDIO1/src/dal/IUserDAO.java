@@ -1,4 +1,6 @@
 package dal;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import dto.UserDTO;
@@ -6,7 +8,7 @@ import dto.UserDTO;
 public interface IUserDAO {
 
 	UserDTO getUser(int userId) throws DALException;
-	List<UserDTO> getUserList() throws DALException;
+	List<UserDTO> getUserList() throws DALException, FileNotFoundException, IOException, ClassNotFoundException;
 	void createUser(int userID, String userName, String ini, String role, String cpr, String password) throws DALException;
 	void updateUser(UserDTO user) throws DALException;
 	void deleteUser(int userId) throws DALException;

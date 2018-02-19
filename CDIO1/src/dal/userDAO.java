@@ -1,8 +1,11 @@
 package dal;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +23,16 @@ public class userDAO implements IUserDAO {
 		return null;
 	}
 
-	public List<UserDTO> getUserList() throws DALException {
+	public List<UserDTO> getUserList() throws DALException, IOException, ClassNotFoundException {
+		FileInputStream fi = new FileInputStream(new File("users.data"));
+		ObjectInputStream oi = new ObjectInputStream(fi);
+
+		// Read objects
+		UserDTO pr1 = (UserDTO) oi.readObject();
 		
+		oi.close();
+		fi.close();
+		users = (List<UserDTO>) pr1;
 		return users;
 	}
 	
