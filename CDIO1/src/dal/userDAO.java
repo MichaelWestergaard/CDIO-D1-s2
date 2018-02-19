@@ -1,10 +1,15 @@
 package dal;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import dto.UserDTO;
 
 public class userDAO implements IUserDAO {
-	private List<UserDTO> users;
+	private List<UserDTO> users = new ArrayList();
 
 	public UserDTO getUser(int userId) throws DALException {	
 		for(int i = 0; i < users.size(); i++) {
@@ -16,12 +21,25 @@ public class userDAO implements IUserDAO {
 	}
 
 	public List<UserDTO> getUserList() throws DALException {
+		
 		return users;
 	}
+	
+	public void saveUsers() throws IOException {
+		FileOutputStream f;
+			f = new FileOutputStream(new File("users.data"));
+			ObjectOutputStream o = new ObjectOutputStream(f);
 
-	public void createUser(UserDTO user) throws DALException {
-		if(getUser(user.getUserId()) == null) {
-			users.add(user);
+			// Write objects to file
+			o.writeObject(users);
+
+			o.close();
+			f.close();
+	}
+
+	public void createUser(int userID, String userName, String ini, String role, String cpr, String password) throws DALException {
+		if(getUser(userID) == null) {
+			users.add(new UserDTO(userID, userName, ini, role, cpr, password));
 		}
 	}
 
