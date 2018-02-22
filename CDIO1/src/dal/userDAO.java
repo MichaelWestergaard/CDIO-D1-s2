@@ -156,34 +156,38 @@ public class userDAO implements IUserDAO {
 		return false;
 	}
 
-	public void updateUserName(int userId, String userName) throws DALException { //Disse burde tag en int Id parameter? idk bg
+	public void updateUserName(int userId, String userName) throws DALException, IOException { //Disse burde tag en int Id parameter? idk bg
 		for(int i = 0; i < users.size(); i++) {
 			if(users.get(i).getUserId()==userId) {
-				userName = users.get(i).getUserName();
+				users.get(i).setUserName(userName);
+				saveUsers();
 			}
 		}
 	}
 
-	public void updateIni(int userId, String ini) throws DALException {
+	public void updateIni(int userId, String ini) throws DALException, IOException {
 		for(int i = 0; i < users.size(); i++) {
 			if(users.get(i).getUserId()==userId) {
-				ini = users.get(i).getIni();
+				users.get(i).setIni(ini);
+				saveUsers();
 			}
 		}
 	}
 
-	public void updateRole(int userId, String role) throws DALException {
+	public void updateRole(int userId, String role) throws DALException, IOException {
 		for(int i = 0; i < users.size(); i++) {
 			if(users.get(i).getUserId()==userId) {
-				role = users.get(i).getIni();
+				users.get(i).setRole(role);
+				saveUsers();
 			}
 		}
 	}
 
-	public void updateCpr(int userId, String cpr ) throws DALException {
+	public void updateCpr(int userId, String cpr ) throws DALException, IOException {
 		for(int i = 0; i < users.size(); i++) {
 			if(users.get(i).getUserId()==userId) {
-				cpr = users.get(i).getIni();
+				users.get(i).setCpr(cpr);
+				saveUsers();
 			}
 		}
 	}
