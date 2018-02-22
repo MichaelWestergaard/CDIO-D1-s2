@@ -148,11 +148,9 @@ public class userDAO implements IUserDAO {
 	}
 
 	public boolean checkId(int userId) {
-		if(userId >= 11 && userId <= 99) {
-			for(int i = 0; i < users.size(); i++) {
-				if(users.get(i).getUserId() == userId) {
-					return true;
-				}
+		for(int i = 0; i < users.size(); i++) {
+			if(users.get(i).getUserId() == userId) {
+				return true;
 			}
 		}
 		return false;
