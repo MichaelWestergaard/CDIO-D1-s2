@@ -68,13 +68,19 @@ public class TUI implements IUI {
 		try {
 			while(userID == 0) {
 				System.out.println("Enter user ID (11-99): ");
-				int desiredID = scan.nextInt();
+				
+				if(scan.hasNextInt() ) {
+					int desiredID = scan.nextInt();
 
-				if(!userdata.checkId(desiredID) && desiredID >= 11 && desiredID <= 99) { //Skal have oprettet "checkUsername" i DAO. Skal returnere true, hvis brugernavnet er gyldigt og ledigt.
-					userID = desiredID;
+					if(!userdata.checkId(desiredID) && desiredID >= 11 && desiredID <= 99) { //Skal have oprettet "checkUsername" i DAO. Skal returnere true, hvis brugernavnet er gyldigt og ledigt.
+						userID = desiredID;
+					} else {
+						System.out.println("The user ID, you entered, is either taken or invalid.");
+					}
 				} else {
-					System.out.println("The user ID, you entered, is either taken or invalid.");
-				}
+					System.out.println("Please, enter a number!");
+					scan.next();
+				}				
 			}
 
 
