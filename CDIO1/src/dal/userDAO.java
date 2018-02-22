@@ -122,7 +122,6 @@ public class userDAO implements IUserDAO {
 
 	public boolean checkCPR(String cpr) {
 
-		if(cpr.length() == 11) {
 			String[] splitCPR = cpr.split("-");
 			String combinedCPR = splitCPR[0] + splitCPR[1];
 			char[] cprChars = combinedCPR.toCharArray();
@@ -143,7 +142,6 @@ public class userDAO implements IUserDAO {
 					return true;
 				}
 			}
-		}
 		return false;
 	}
 
@@ -151,10 +149,9 @@ public class userDAO implements IUserDAO {
 		if(userId >= 11 && userId <= 99) {
 			for(int i = 0; i < users.size(); i++) {
 				if(users.get(i).getUserId() == userId) {
-					return false;
+					return true;
 				}
 			}
-			return true;
 		}
 		return false;
 	}
