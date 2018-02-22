@@ -191,7 +191,7 @@ public class TUI implements IUI {
 
 					while(username == null) {
 						System.out.println("Enter username (2-20 characters): ");
-						String desiredUsername = scan.nextLine();
+						String desiredUsername = scan.next();
 
 						if(userdata.checkUserName(desiredUsername)) {
 							username = desiredUsername;
@@ -208,7 +208,7 @@ public class TUI implements IUI {
 
 					while(ini == null) {
 						System.out.println("Enter your initials (2-4 characters): ");
-						String desiredIni = scan.nextLine().toUpperCase();
+						String desiredIni = scan.next().toUpperCase();
 
 						if(userdata.checkIni(desiredIni)) {
 							ini = desiredIni;
@@ -225,7 +225,7 @@ public class TUI implements IUI {
 
 					while(role == null) {
 						System.out.println("Enter your role: ");
-						String desiredRole = scan.nextLine();
+						String desiredRole = scan.next();
 
 						if(userdata.checkRole(desiredRole)) {
 							role = desiredRole;
