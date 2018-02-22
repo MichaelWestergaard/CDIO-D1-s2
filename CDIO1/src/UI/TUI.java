@@ -33,28 +33,41 @@ public class TUI implements IUI {
 
 		System.out.println(" --- | MENU | --- ");
 		System.out.println("[1] Create User\n[2] List Users\n[3] Edit User\n[4] Delete User\n[5] Exit");
-
-		int action = scan.nextInt();
-
-		switch (action) {
-		case 1:
-			createUser();
-			break;
-		case 2:
-			listUsers();
-			break;
-		case 3:
-			editUser();
-			break;
-		case 4:
-			deleteUser();
-			break;
-		case 5:
-			System.exit(0);
-			break;
-		default:
-			showMenu();
-		}
+		boolean menuInput = false;
+		
+		while(!menuInput) {
+			if(scan.hasNextInt()) {
+				int action = scan.nextInt();
+	
+				switch (action) {
+				case 1:
+					menuInput = true;
+					createUser();
+					break;
+				case 2:
+					menuInput = true;
+					listUsers();
+					break;
+				case 3:
+					menuInput = true;
+					editUser();
+					break;
+				case 4:
+					menuInput = true;
+					deleteUser();
+					break;
+				case 5:
+					menuInput = true;
+					System.exit(0);
+					break;
+				default:
+					showMenu();
+				}
+			} else {
+				System.out.println("Please enter a number!");
+				scan.next();
+			}
+		}	
 	}
 
 	public void createUser() {
