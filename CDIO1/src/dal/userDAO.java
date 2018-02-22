@@ -147,15 +147,18 @@ public class userDAO implements IUserDAO {
 	}
 
 	public boolean checkId(int userId) {
+		if(userId >= 11 && userId <= 99) {
+			
 		for(int i = 0; i < users.size(); i++) {
-
+			
 			if(users.get(i).getUserId() == userId) {
 				return true;
 			}
 		}
+		}
 		return false;
 	}
-
+	
 	public void updateUserName(int userId, String userName) throws DALException { //Disse burde tag en int Id parameter? idk bg
 		for(int i = 0; i < users.size(); i++) {
 			if(users.get(i).getUserId()==userId) {
