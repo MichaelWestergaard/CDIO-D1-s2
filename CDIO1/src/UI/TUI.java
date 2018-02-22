@@ -239,11 +239,15 @@ public class TUI implements IUI {
 
 				default:
 					editUser();
-				}			
+				}
+				userdata.saveUsers();
 			} else {
 				editUser();
 			}
 		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
