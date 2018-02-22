@@ -121,7 +121,7 @@ public class userDAO implements IUserDAO {
 	}
 
 	public boolean checkCPR(String cpr) {
-		
+
 		if(cpr.length() == 11) {
 			String[] splitCPR = cpr.split("-");
 			String combinedCPR = splitCPR[0] + splitCPR[1];
@@ -130,7 +130,7 @@ public class userDAO implements IUserDAO {
 			int cprMonth = Integer.parseInt(new StringBuilder().append(cprChars[2]).append(cprChars[3]).toString());
 			int cprYear = Integer.parseInt(new StringBuilder().append(cprChars[4]).append(cprChars[5]).toString());
 			boolean cprDublicate = false;
-			
+
 			if(cprDay > 0 && cprDay < 32 && cprMonth > 0 && cprMonth < 13 && cprYear >= 0 && cprYear <= 99) {
 				for(int i = 0; i < users.size(); i++) {
 					if(users.get(i).getCpr() == cpr) {
@@ -138,7 +138,7 @@ public class userDAO implements IUserDAO {
 						break;
 					}
 				}
-				
+
 				if(!cprDublicate) {
 					return true;
 				}

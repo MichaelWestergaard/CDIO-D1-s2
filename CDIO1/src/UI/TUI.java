@@ -158,7 +158,7 @@ public class TUI implements IUI {
 		System.out.println(" --- | Edit User | --- ");
 		
 		boolean userFound = false;
-		int chosenID;
+		int chosenID = 0;
 		
 		while(!userFound) {
 			System.out.println("Enter the ID of the user you want to edit: ");		
@@ -179,6 +179,7 @@ public class TUI implements IUI {
 			}
 		}
 		
+		try {
 		System.out.println("Do you want to edit this user?\n[1] Yes\n[2] No");
 		int action = scan.nextInt();
 		
@@ -188,7 +189,7 @@ public class TUI implements IUI {
 			
 			switch(action2) {
 			case 1: //Ændring af username
-				String username;
+				String username = null;
 				
 				while(username == null) {
 					System.out.println("Enter username (2-20 characters): ");
@@ -205,7 +206,7 @@ public class TUI implements IUI {
 				break;
 				
 			case 2: //Ændring af initialer
-				String ini;
+				String ini = null;
 				
 				while(ini == null) {
 					System.out.println("Enter your initials (2-4 characters): ");
@@ -222,7 +223,7 @@ public class TUI implements IUI {
 				break;
 				
 			case 3: //Ændring af rolle
-				String role;
+				String role = null;
 				
 				while(role == null) {
 					System.out.println("Enter your role: ");
@@ -244,7 +245,14 @@ public class TUI implements IUI {
 		} else {
 			editUser();
 		}
+	} catch (DALException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
+	}
+
+	
+	
 	
 	public void deleteUser() {
 		System.out.println(" --- | Delete User | --- ");
