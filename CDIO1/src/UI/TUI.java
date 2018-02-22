@@ -70,7 +70,7 @@ public class TUI implements IUI {
 			System.out.println("Enter user ID (11-99): ");
 			int desiredID = scan.nextInt();
 
-			if(!userdata.checkId(desiredID)) { //Skal have oprettet "checkUsername" i DAO. Skal returnere true, hvis brugernavnet er gyldigt og ledigt.
+			if(userdata.checkId(desiredID)) { //Skal have oprettet "checkUsername" i DAO. Skal returnere true, hvis brugernavnet er gyldigt og ledigt.
 				userID = desiredID;
 			} else {
 				System.out.println("The user ID, you entered, is either taken or invalid.");
@@ -113,7 +113,7 @@ public class TUI implements IUI {
 		
 		while(cpr == null) {
 			System.out.println("Enter your CPR: ");
-			String desiredCPR = scan.nextLine();
+			String desiredCPR = scan.next();
 			
 			if(userdata.checkCPR(desiredCPR)) { //Skal have oprettet "checkCPR" i DAO. Skal returnere true, hvis nummeret er gyldigt og ledigt.
 				cpr = desiredCPR;
