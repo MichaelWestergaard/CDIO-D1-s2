@@ -3,17 +3,15 @@ package UI;
 import java.io.IOException;
 import java.util.Scanner;
 
-import dal.IUserDAO;
 import dal.IUserDAO.DALException;
 import dal.userDAO;
-import dto.UserDTO;
 
 public class TUI implements IUI {
 	Scanner scan = new Scanner(System.in);
 	userDAO userdata;
 
-	public TUI(IUserDAO data) {
-		this.userdata = (userDAO) data;
+	public TUI() {
+		this.userdata = new userDAO();
 	}
 
 	public void showMenu() {
@@ -272,9 +270,6 @@ public class TUI implements IUI {
 		}
 	}
 
-
-
-
 	public void deleteUser() {
 		System.out.println(" --- | Delete User | --- ");
 
@@ -324,5 +319,4 @@ public class TUI implements IUI {
 		}
 	}
 
-	//Vigtigt: Skal have lavet en returnToMainMenu-metode
 }

@@ -2,16 +2,17 @@ package dal;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
 import dto.UserDTO;
 
 public class userDAO implements IUserDAO {
+	
 	private List<UserDTO> users = new ArrayList<UserDTO>();
 
 	public UserDTO getUser(int userId) throws DALException {	
@@ -50,6 +51,8 @@ public class userDAO implements IUserDAO {
 			String password = makePassword(10);
 			users.add(new UserDTO(userID, userName, ini, role, cpr, password));
 			saveUsers();
+		} else {
+			throw new DALException("Bruger ID findes allerede");
 		}
 	}
 
@@ -192,11 +195,7 @@ public class userDAO implements IUserDAO {
 		}
 	}
 
-
-	/* Adgangskoden skal indeholde mindst 6 tegn af mindst tre af de følgende fire kategorier: små bogstaver (’a’ til ’z’), store bogstaver (’A’ til ’Z’), cifre (’0’ til ’9’) og specialtegn (som defineret herunder).
-	    Undgå at bruge dit fornavn, efternavn eller bruger-ID som en del af din adgangskode, da dette vil medføre problemer med at logge ind på nogle systemer og tjenester på DTU, især Windows-tjenester.
-	    Anvend blot følgende special-tegn: {'.', '-', '_', '+', '!', '?', '='} */
-	public static String makePassword(int length){
+	public String makePassword(int length){
 		String password = "";
 
 		for(int i = 0; i < length - 2 ; i++) {
@@ -210,24 +209,16 @@ public class userDAO implements IUserDAO {
 		return password;
 	}
 
-	public static String randomCharacter(String characters) {
+	public String randomCharacter(String characters) {
 		int n = characters.length();
 		int r = (int) (n*Math.random());
 		return characters.substring(r,r + 1);
 	}
 
-	public static String insertAtRandom(String str, String toInsert) {
+	public String insertAtRandom(String str, String toInsert) {
 		int n = str.length();
 		int r = (int) ((n+1) * Math.random());
 		return str.substring(0,r) + toInsert + str.substring(r);
-
-	}
-
-
-
-
-
-	public void updatePassword() throws DALException {
 
 	}
 
@@ -236,11 +227,6 @@ public class userDAO implements IUserDAO {
 			users.remove(getUser(userId));
 			saveUsers();
 		}
-	}
-
-	public void updateUser(UserDTO user) throws DALException {
-		// TODO Auto-generated method stub
-
 	}
 
 }

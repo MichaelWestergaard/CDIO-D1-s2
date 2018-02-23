@@ -1,8 +1,6 @@
 package dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserDTO implements Serializable{
 
@@ -26,24 +24,31 @@ public class UserDTO implements Serializable{
 	public int getUserId() {
 		return userId;
 	}
-	public void setUserId() {
+	
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	
 	public String getUserName() {
 		return userName;
 	}
+	
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	
 	public String getIni() {
 		return ini;
 	}
+	
 	public void setIni(String ini) {
 		this.ini = ini;
 	}
+	
 	public String getCpr() {
 		return cpr;
 	}
+	
 	public void setCpr(String cpr) {
 		this.cpr = cpr;
 	}
@@ -59,6 +64,7 @@ public class UserDTO implements Serializable{
 	public String getPassword() {
 		return password;
 	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
